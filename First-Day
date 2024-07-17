@@ -1,0 +1,60 @@
+hi
+
+LeetCode 704:
+
+Version 1
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        # define left and right limit
+        left, right = 0, len(nums) - 1
+        # define middle limit and loop limit
+        while left <= right:
+            middle = left + (right - left) // 2
+            # target in the left side:
+            if nums[middle] > target:
+                right = middle - 1
+            # target in the right side:    
+            elif nums[middle] < target:
+                left = middle + 1
+            # target is the middle:    
+            else:
+                return middle
+        return -1
+
+Version 2
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        # define left and right limit
+        left, right = 0, len(nums) - 1
+        # define middle limit and loop limit
+        while left <= right:
+            middle = left + (right - left) // 2
+            # target in the left side:
+            if nums[middle] > target:
+                right = middle - 1
+            # target in the right side:    
+            elif nums[middle] < target:
+                left = middle + 1
+            # target is the middle:    
+            else:
+                return middle
+        return -1
+
+LeetCode 27
+
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        #left and right pointer:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            while left <= right and nums[left] != val:
+                left += 1
+            while left <= right and nums[right] == val:
+                right -= 1
+            if left < right:
+                nums[left] = nums[right]
+                left += 1
+                right -= 1
+        return left
